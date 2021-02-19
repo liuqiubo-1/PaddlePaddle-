@@ -1,0 +1,137 @@
+课程链接：
+https://aistudio.baidu.com/aistudio/course/introduce/7073
+
+导语
+以前看过一些学习python的视频，而且大学里也学过C语言，所以学习起来也相对容易很多，下面是我个人总结的一些python里比较"clean"的点（相比与C语言来说），
+这些是真的很好用的东西，不像C要写很长一串，python只要一句就能实现
+
+笔记
+列表、字符串、元组、集合、字典
+1.python里有列表、元组、集合、字典、字符串等多种多样的类型，每种类型又有各自的方法，一开始学起来挺头疼的，只能是多练，就能熟能生巧。
+
+字符串常用函数
+1.count 计数功能
+显示自定字符在字符串当中的个数`
+
+my_string = 'hello_world'
+my_string.count('o')
+
+2.find 查找功能
+返回从左第一个指定字符的索引，找不到返回-1
+
+my_string = 'hello_world'
+my_string.find('o')
+
+3.index 查找
+返回从左第一个指定字符的索引，找不到报错（与find的区别）
+
+my_string = 'hello_world'
+my_string.index('o')
+
+4.split 字符串的拆分
+按照指定的内容进行分割（默认空格）
+
+my_string = 'hello_world'
+my_string.split('_')
+
+5.replace字符串的替换
+从左到右替换指定的元素，可以指定替换的个数，默认全部替换
+
+my_string = 'hello_world'
+my_string.replace('_',' ')
+
+6.字符串标准化
+默认去除两边的空格、换行符之类的，去除内容可以指定
+
+my_string = ' hello world\n'
+my_string.strip()
+
+7.字符串的变形
+
+my_string = 'hello_world'
+my_string.upper()
+my_string.lower()
+my_string.capitalize()
+
+8.字符串的格式化输出（%）
+在这里插入图片描述
+老师讲了一种是加format，这种我没怎么用；多是用%控制，或者用 f-string
+
+列表常用函数
+1.append添加新的元素
+
+list1 = ['a','b','c','d','e','f']
+list1.append('g') # 在末尾添加元素
+print(list1)
+
+2.count 计数 和 index查找
+
+list1 = ['a','b','a','d','a','f']
+print(list1.count('a')) 
+list1 = ['a','b','a','d','a','f']
+print(list1.index('a')) 
+
+3.删除元素
+
+list1 = ['a','b','a','d','a','f']
+print(list1.pop(3)) 
+print(list1)
+list1.remove('a')
+print(list1)
+
+列表生成式（好用强推）
+[n+1 for n in list_1]//列表每一项+1
+
+[(n+1)**2 for n in range(10)]//1-10之间所有数的平方 
+
+[str((n+1)**2) for n in range(10)]//1-10之间所有数的平方 构成的字符串列表
+
+list_1 = [1,2,3,4,5]
+[n for n in list_1 if n%2==0]//列表中的每一个偶数项[过滤]
+
+list_2 = ['a','b','c_sv','d','e_sv']
+[s for s in list_2 if s.endswith('sv')]//字符串中所有以'sv'结尾的
+
+
+list_A = [1,3,6,7,32,65,12]
+list_B = [2,6,3,5,12]
+[i for i in list_A if i in list_B]//取两个list的交集
+
+函数
+函数是组织好的，可重复使用的，用来实现单一，或相关联功能的代码段。
+
+函数能提高应用的模块性，和代码的重复利用率。你已经知道Python提供了许多内建函数，比如print()。但你也可以自己创建函数，这被叫做用户自定义函数。
+
+函数代码块以 def 关键词开头，后接函数标识符名称和圆括号()。
+任何传入参数和自变量必须放在圆括号中间。圆括号之间可以用于定义参数。
+函数的第一行语句可以选择性地使用文档字符串—用于存放函数说明。
+函数内容以冒号起始，并且缩进。
+return [表达式] 结束函数，选择性地返回一个值给调用方。不带表达式的return相当于返回 None。
+
+lambda匿名函数
+python 使用 lambda 来创建匿名函数。
+
+lambda 只是一个表达式，函数体比 def 简单很多。
+
+lambda 的主体是一个表达式，而不是一个代码块。仅仅能在 lambda 表达式中封装有限的逻辑进去。
+
+lambda 函数拥有自己的命名空间，且不能访问自有参数列表之外或全局命名空间里的参数。
+
+虽然 lambda 函数看起来只能写一行，却不等同于 C 或 C++ 的内联函数，后者的目的是调用小函数时不占用栈内存从而增加运行效率。
+
+排序函数
+在C里排序是个问题，有多种多样的排序法供你选择，但我并不想整那么花里胡哨的，我想像python里一样，一句完成。
+
+sorted
+排序也是在程序中经常用到的算法。无论使用冒泡排序还是快速排序，排序的核心是比较两个元素的大小。如果是数字，我们可以直接比较，
+但如果是字符串或者两个dict呢？直接比较数学上的大小是没有意义的，因此，比较的过程必须通过函数抽象出来。
+
+sorted([36, 5, -12, 9, -21])//默认从小到大
+
+sorted([36, 5, -12, 9, -21], reverse=True)//加上reverse关键字也可以从大到小
+
+sorted([36, 5, -12, 9, -21], key=abs)
+//按绝对值排序key指定的函数将作用于list的每一个元素上，并根据key函数返回的结果进行排序
+//**PS:此时里面的值不会变成绝对值,只是排序按绝对值排序
+
+目前能总结的就这么多了，其他还有一些没有梳理清楚的，以后再补充
